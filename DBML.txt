@@ -1,0 +1,99 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table passageiro {
+  CPF varchar [pk]
+  nome varchar [not null]
+  telefone varchar
+  email varchar [not null]
+  dataNascimento date
+}
+
+table empresa{
+  CNPJ varchar
+  telefone varchar
+  nome varchar
+  endereco varchar
+}
+
+table pontoOnibus{
+  codPonto integer
+  endereco varchar
+}
+
+Table cartaoTransporte {
+  id int [primary key]
+  Usuario varchar
+  saldo float [not null]
+}
+
+ref: cartaoTransporte.Usuario - passageiro.CPF
+
+Table passagem {
+  id int [primary key]
+  numCartao int
+  valor float
+  dataHora datetime
+  idViagem int [not null]
+}
+
+ref: passagem.idViagem > viagem.id
+ref: passagem.id > cartaoTransporte.id
+
+table motorista{
+  CNH varchar
+  nome varchar
+  telefone varchar
+  jornada int
+}
+
+table cobrador{
+  matricula varchar
+  nome varchar
+  telefone varchar
+  escala int
+} 
+
+table onibus{
+  placa varchar
+  capacidade int
+  idEmpresa int [not null]
+}
+
+ref: onibus.idEmpresa > empresa.CNPJ
+
+table linha{
+  codLinha integer
+  idEmpresa integer [ref: > empresa.CNPJ]
+  nome varchar
+}
+
+table horariosLinha{
+  idLinha integer [ref: - linha.codLinha]
+  horario time
+  indexes {
+    (idLinha, horario) [pk]
+  }
+}
+
+table linhaPontos{
+  idLinha intenger [ref: - linha.codLinha]
+  codPonto intenger [ref: - pontoOnibus.codPonto]
+  indexes {
+    (idLinha, codPonto) [pk]
+  }
+}
+
+Table viagem{
+  id int [pk]
+  motorista varchar [not null]
+  cobrador varchar
+  placa varchar [not null]
+  horaChegada time
+  horaSaida time
+  data date
+}
+
+ref: viagem.placa > onibus.placa
+ref: viagem.motorista > motorista.CNH
+ref: viagem.cobrador > cobrador.matricula
