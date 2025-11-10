@@ -86,7 +86,7 @@ CREATE TABLE `linhaPontos` (
 );
 
 CREATE TABLE `viagem` (
-  `id` integer PRIMARY KEY,
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
   `motorista` varchar(255) NOT NULL,
   `cobrador` varchar(255),
   `placa` varchar(255) NOT NULL,
