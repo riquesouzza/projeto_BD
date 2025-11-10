@@ -85,7 +85,7 @@ table linhaPontos{
 }
 
 Table viagem{
-  id int [pk]
+   id int [pk, increment]
   motorista varchar [not null]
   cobrador varchar
   placa varchar [not null]
