@@ -1,4 +1,4 @@
-from servicos.servicoMotorista import (
+from negocios.servicoMotorista import (
     servico_cadastrar_motorista,
     servico_listar_motoristas,
     servico_editar_motorista,

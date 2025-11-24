@@ -11,7 +11,7 @@ def cadastrar_motorista(cnh, nome, telefone, jornada):
    
 # LISTAR MOTORISTAS
 
-def listarMotoristas():
+def listar_motoristas():
     comando = 'SELECT * FROM motorista'
     return comandoLeitura(comando)
 

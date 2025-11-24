@@ -17,7 +17,7 @@ def cadastrar_passageiro(cpf, nome, telefone, email, data_nascimento):
 
 # LE PASSAGEIROS
 
-def lerPassageiro(cpf):
+def ler_passageiro(cpf):
     comando = f'SELECT * FROM passageiro WHERE CPF="{cpf}"'
     return comandoLeitura(comando)
 
