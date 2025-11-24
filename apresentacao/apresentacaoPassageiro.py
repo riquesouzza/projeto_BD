@@ -1,4 +1,4 @@
-from servicoPassageiro import (
+from servicos.servicoPassageiro import (
     servico_cadastrar_passageiro,
     servico_listar_passageiros,
     servico_editar_passageiro,
