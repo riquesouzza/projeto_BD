@@ -31,7 +31,7 @@ CREATE TABLE `empresa` (
 );
 
 CREATE TABLE `pontoOnibus` (
-  `codPonto` integer PRIMARY KEY,
+  `codPonto` integer PRIMARY KEY AUTO_INCREMENT,
   `endereco` varchar(255) NOT NULL
 );
 
