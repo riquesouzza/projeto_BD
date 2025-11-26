@@ -1,4 +1,4 @@
-from persistencia.crudCobrador import *
+from apresentacao import *
 
-for dado in lerCobradores():
-    print(dado)
+#menuCobrador()
+menuEmpresa()
