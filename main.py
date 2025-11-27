@@ -1,4 +1,3 @@
-from apresentacao import *
+from apresentacao.telaPrincipal import menuPrincipal
 
-#menuCobrador()
-menuEmpresa()
+menuPrincipal()

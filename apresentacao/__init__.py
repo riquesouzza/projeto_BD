@@ -2,3 +2,7 @@
 #from .apresentacaoPassageiro import *
 from .apresentacaoCobrador import *
 from .apresentacaoEmpresa import *
+from .apresentacaoHorarioLinha import *
+from .apresentacaoPontoOnibus import *
+from .apresentacaoPontosLinha import *
+from .apresentacaoViagem import *
