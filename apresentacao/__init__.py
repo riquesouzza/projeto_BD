@@ -6,4 +6,4 @@ from .apresentacaoHorarioLinha import *
 from .apresentacaoPontoOnibus import *
 from .apresentacaoPontosLinha import *
 from .apresentacaoViagem import *
-from .apresentacaoLinha import *
+#from .apresentacaoLinha import *
