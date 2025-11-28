@@ -109,3 +109,53 @@ CREATE TABLE `passagem` (
   FOREIGN KEY (`numCartao`) REFERENCES `cartaoTransporte` (`id`),
   FOREIGN KEY (`idViagem`) REFERENCES `viagem` (`id`)
 );
+
+DELIMITER $$
+
+CREATE PROCEDURE registrar_passagem(
+    IN p_numCartao INT,
+    IN p_valor FLOAT,
+    IN p_idViagem INT
+)
+BEGIN
+    DECLARE v_saldo FLOAT;
+    DECLARE novoId INT;
+
+    -- Busca o saldo atual do cartão
+    SELECT saldo INTO v_saldo
+    FROM cartaoTransporte
+    WHERE id = p_numCartao;
+
+    -- Verifica se o cartão existe
+    IF v_saldo IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Cartão inexistente.';
+    END IF;
+
+    -- Verifica se tem saldo suficiente
+    IF v_saldo < p_valor THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Saldo insuficiente para realizar a passagem.';
+    END IF;
+
+    -- Gera ID manual (SEM AUTO_INCREMENT)
+    SELECT IFNULL(MAX(id), 0) + 1 INTO novoId FROM passagem;
+
+    -- Insere a passagem com ID manual
+    INSERT INTO passagem (id, numCartao, valor, dataHora, idViagem)
+    VALUES (
+        novoId,
+        p_numCartao,
+        p_valor,
+        NOW(),
+        p_idViagem
+    );
+
+    -- Atualiza o saldo do cartão
+    UPDATE cartaoTransporte
+    SET saldo = saldo - p_valor
+    WHERE id = p_numCartao;
+
+END $$
+
+DELIMITER ;
