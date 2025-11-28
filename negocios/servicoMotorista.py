@@ -10,18 +10,18 @@ from persistencia.crudMotorista import (
 
 # SERVICOS
 
-def servico_cadastrar_motorista(cnh, nome, telefone):
+def servico_cadastrar_motorista(cnh, nome, telefone,jornada):
   
-    cadastrar_motorista(cnh, nome, telefone)
+    cadastrar_motorista(cnh, nome, telefone,jornada)
 
 
 def servico_listar_motoristas():
     return listar_motoristas()
 
 
-def servico_editar_motorista(cnh, nome=None, telefone=None):
+def servico_editar_motorista(cnh, nome=None, telefone=None,jornada=None):
     
-    editar_motorista(cnh, nome, telefone)
+    editar_motorista(cnh, nome, telefone,jornada)
 
 
 def servico_deletar_motorista(cnh):
