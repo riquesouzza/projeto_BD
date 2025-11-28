@@ -21,11 +21,9 @@ def menuPrincipal():
         elif opcao == "2":
             menuCobrador()
         elif opcao == "3":
-            #menu_motorista()
-            print("Erro")
+            menu_motorista()
         elif opcao == "4":
-            #menu_passageiro()
-            print("Erro")
+            menu_passageiro()
         elif opcao == "5":
             menuPontoOnibus()
         elif opcao == "6":
