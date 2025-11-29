@@ -18,6 +18,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE `passageiro` (
   `CPF` varchar(255) PRIMARY KEY,
   `nome` varchar(255) NOT NULL,
+  `foto` mediumblob,
   `telefone` varchar(255),
   `email` varchar(255) NOT NULL,
   `dataNascimento` date NOT NULL
