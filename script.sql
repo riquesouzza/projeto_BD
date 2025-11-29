@@ -156,3 +156,32 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+CREATE VIEW viagem_envolvidos AS
+SELECT 
+    v.id AS idViagem,
+    v.data,
+    v.horaSaida,
+    v.horaChegada,
+
+    m.nome AS nomeMotorista,
+    c.nome AS nomeCobrador,
+    o.placa AS onibusPlaca,
+    l.nome AS nomeLinha,
+
+    COUNT(pa.id) AS quantidadePassageiros,
+
+    GROUP_CONCAT(pas.nome SEPARATOR ', ') AS nomesPassageiros
+
+FROM viagem v
+LEFT JOIN motorista m ON v.motorista = m.CNH
+LEFT JOIN cobrador c ON v.cobrador = c.matricula
+LEFT JOIN onibus o ON v.placa = o.placa
+LEFT JOIN linha l ON v.idLinha = l.codLinha
+LEFT JOIN passagem pa ON pa.idViagem = v.id
+LEFT JOIN cartaoTransporte ct ON pa.numCartao = ct.id
+LEFT JOIN passageiro pas ON ct.Usuario = pas.CPF
+
+GROUP BY 
+    v.id, v.data, v.horaSaida, v.horaChegada,
+    m.nome, c.nome, o.placa, l.nome;
