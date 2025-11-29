@@ -1,7 +1,5 @@
 from apresentacao import *
 
-#colocar os que tem linha para o menu de linha
-
 def menuPrincipal():
     while True:
         print("\n==== SISTEMA DE GERENCIAMENTO ====")
@@ -9,10 +7,12 @@ def menuPrincipal():
         print("2 - Cobrador")
         print("3 - Motorista")
         print("4 - Passageiro")
-        print("5 - Ponto de Ônibus")
-        print("6 - Pontos da Linha")
-        print("7 - Horários da Linha")
-        print("8 - Viagem")
+        print("5 - Ponto de Onibus")
+        print("6 - Viagem")
+        print("7 - Cartao de Transporte")
+        print("8 - Linha")
+        print("9 - Onibus")
+        print("10 - Passagem")
         print("0 - Sair")
         opcao = input("Escolha: ")
 
@@ -27,12 +27,16 @@ def menuPrincipal():
         elif opcao == "5":
             menuPontoOnibus()
         elif opcao == "6":
-            menuLinhaPontos()
-        elif opcao == "7":
-            menuHorariosLinha()
-        elif opcao == "8":
             menuViagem()
+        elif opcao == "7":
+            menu_cartao()
+        elif opcao == "8":
+            menu_linha() 
+        elif opcao == "9":
+            menu_onibus()
+        elif opcao == "10":
+            menu_passagem()
         elif opcao == "0":
             break
         else:
-            print("Opção inválida!")
+            print("Opcao invalida!")

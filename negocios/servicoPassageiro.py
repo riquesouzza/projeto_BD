@@ -1,6 +1,7 @@
 from persistencia.crudPassageiro import (
     cadastrar_passageiro,
     ler_passageiro,
+    listarPassageiros,
     editar_passageiro,
     deletar_passageiro
 )
@@ -13,7 +14,7 @@ def servico_cadastrar_passageiro(cpf, nome, telefone, email, nascimento):
 
 
 def servico_listar_passageiros():
-    return ler_passageiro()
+    return listarPassageiros()
 
 
 def servico_editar_passageiro(cpf, nome=None, telefone=None, email=None, nascimento=None):
