@@ -5,7 +5,7 @@ def criarLinhaPonto(idLinha, codPonto):
     comandoEscrita(comando)
 
 def lerLinhaPontos(idLinha):
-    comando = f'SELECT * FROM linhaPontos WHERE idLinha = {idLinha};'
+    comando = f'SELECT linhapontos.codPonto, endereco FROM linhaPontos JOIN pontoonibus on linhapontos.codPonto = pontoonibus.codPonto WHERE idLinha = "{idLinha}";'
     return comandoLeitura(comando)
 
 def editarLinhaPonto(idLinha, codPontoAntigo, codPontoNovo):

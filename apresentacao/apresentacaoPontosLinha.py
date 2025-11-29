@@ -24,7 +24,7 @@ def menuLinhaPontos():
                 idLinha = input("Código da linha: ")
                 dados = lerLinhaPontos(idLinha)
                 for d in dados:
-                    print(f'Ponto: {d[0][1]} Endereço: {d[0][2]}')
+                    print(f'Parada: {d[0]} - {d[1]}')
             except Exception as erro:
                 print(f"Erro: {erro}")
 
