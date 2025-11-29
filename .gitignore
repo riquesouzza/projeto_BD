@@ -1,0 +1,12 @@
+# created by virtualenv automatically
+
+# Ignorar pycache
+__pycache__/
+**/__pycache__/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# VSCode
+.vscode/
