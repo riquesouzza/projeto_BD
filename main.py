@@ -1,4 +1,3 @@
-from persistencia.crudCobrador import *
+from apresentacao.telaPrincipal import menuPrincipal
 
-for dado in lerCobradores():
-    print(dado)
+menuPrincipal()

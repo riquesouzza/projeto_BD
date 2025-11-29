@@ -3,3 +3,7 @@ from .crudPassageiro import *
 from .crudPontoOnibus import *
 from .crudEmpresa import *
 from .crudCobrador import *
+from .crudCartao import *
+from .crudLinha import *
+from .crudOnibus import *
+from .crudPassagem import *
