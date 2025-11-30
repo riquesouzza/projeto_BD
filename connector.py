@@ -16,6 +16,14 @@ def comandoEscrita(comando):
     cursor.close()
     conexao.close()
 
+def comandoEscritaParametros(comando, parametros):
+    conexao = conexaoBD()
+    cursor = conexao.cursor()
+    cursor.execute(comando, parametros)
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+
 def comandoLeitura(comando):
     conexao = conexaoBD()
     cursor = conexao.cursor()

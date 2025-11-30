@@ -36,8 +36,38 @@ def menuViagem():
         elif opcao == "3":
             try:
                 idv = input("Digite o ID da viagem: ")
-                dado = lerViagem(idv)
-                print(f'Motorista: {dado[0][1]}\nCobrador: {dado[0][2]}\nPlaca: {dado[0][3]}\nLinha: {dado[0][4]}\nChegada: {dado[0][5]}\nSaída: {dado[0][6]}\nData: {dado[0][7]}')
+                viagem = lerViagem(idv)
+
+                if not viagem:
+                    print("Nenhuma viagem encontrada.")
+                else:
+                    v = viagem[0]
+                    print("\n=== DADOS DA VIAGEM ===")
+                    print(f"ID: {v[0]}")
+                    print(f"Data: {v[1]}")
+                    print(f"Saída: {v[2]}")
+                    print(f"Chegada: {v[3]}")
+
+                    print("\n=== DADOS DO MOTORISTA / COBRADOR ===")
+                    print(f"Motorista: {v[4]}")
+                    print(f"Cobrador: {v[5] if v[5] else '— Sem Cobrador —'}")
+
+                    print("\n=== ÔNIBUS E LINHA ===")
+                    print(f"Placa do Ônibus: {v[6]}")
+                    print(f"Linha: {v[7]}")
+
+                    print("\n=== PASSAGEIROS ===")
+                    print(f"Quantidade: {v[8]}")
+
+                    nomes_passageiros = v[9]
+
+                    if nomes_passageiros:
+                        nomes = nomes_passageiros.split(", ")
+                        for nome in nomes:
+                            print(f"- {nome}")
+                    else:
+                        print("Nenhum passageiro registrado.")
+
             except Exception as erro:
                 print(f"Erro: {erro}")
 
