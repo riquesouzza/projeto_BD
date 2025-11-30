@@ -18,7 +18,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE `passageiro` (
   `CPF` varchar(255) PRIMARY KEY,
   `nome` varchar(255) NOT NULL,
-  `foto` mediumblob,
   `telefone` varchar(255),
   `email` varchar(255) NOT NULL,
   `dataNascimento` date NOT NULL
@@ -54,7 +53,8 @@ CREATE TABLE `cobrador` (
   `matricula` varchar(255) PRIMARY KEY,
   `nome` varchar(255) NOT NULL,
   `telefone` varchar(255),
-  `escala` integer NOT NULL
+  `escala` integer NOT NULL,
+  `foto` mediumblob
 );
 
 CREATE TABLE `onibus` (
@@ -183,6 +183,4 @@ LEFT JOIN passagem pa ON pa.idViagem = v.id
 LEFT JOIN cartaoTransporte ct ON pa.numCartao = ct.id
 LEFT JOIN passageiro pas ON ct.Usuario = pas.CPF
 
-GROUP BY 
-    v.id, v.data, v.horaSaida, v.horaChegada,
-    m.nome, c.nome, o.placa, l.nome;
+GROUP BY  v.id, v.data, v.horaSaida, v.horaChegada, m.nome, c.nome, o.placa, l.nome;
