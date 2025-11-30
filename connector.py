@@ -4,7 +4,7 @@ def conexaoBD():
     return mysql.connector.connect(
         host='localhost',
         user='root',
-        password='CIC0197UNB',
+        password='Dados!951',
         database='projetobd',
     )
 

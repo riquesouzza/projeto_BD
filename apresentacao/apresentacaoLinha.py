@@ -3,7 +3,11 @@ from negocios.servicoLinha import (
     servico_listar_linhas,
     servico_ler_linha,
     servico_editar_linha,
-    servico_deletar_linha
+    servico_deletar_linha,
+    servico_listar_historico_linhas,
+    servico_listar_historico_linha
+
+
 )
 from .apresentacaoPontosLinha import menuLinhaPontos  # supondo que você tenha esse menu
 from .apresentacaoHorarioLinha import menuHorariosLinha  # supondo que você tenha esse menu
@@ -12,7 +16,7 @@ def exibir_linhas():
     linhas = servico_listar_linhas()
     print("\n----- LISTA DE LINHAS -----")
     for l in linhas:
-        print(f"Codigo: {l[0]}, Empresa (CNPJ): {l[1]}, Nome: {l[2]}")
+        print(f"Codigo: {l[0]}, Empresa (CNPJ): {l[1]}, Nome: {l[2]}, Valor: {l[3]}")
     print("----------------------------\n")
 
 def menu_linha():
@@ -25,6 +29,7 @@ def menu_linha():
         print("5 - Remover Linha")
         print("6 - Pontos da Linha")
         print("7 - Horarios da Linha")
+        print("8 - Historico dos valores ")
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
@@ -34,7 +39,8 @@ def menu_linha():
                 cod_linha = input("Codigo da linha: ")
                 id_empresa = input("CNPJ da empresa responsavel: ")
                 nome = input("Nome da linha: ")
-                servico_cadastrar_linha(cod_linha, id_empresa, nome)
+                valor_linha = input("Valor da passagem da linha: ")
+                servico_cadastrar_linha(cod_linha, id_empresa, nome, valor_linha)
                 print("Linha cadastrada com sucesso!")
             except Exception as erro:
                 print(f"Erro: {erro}")
@@ -50,7 +56,7 @@ def menu_linha():
                 dados = servico_ler_linha(cod_linha)
                 if dados:
                     l = dados[0]
-                    print(f"\nCodigo: {l[0]}\nEmpresa (CNPJ): {l[1]}\nNome: {l[2]}")
+                    print(f"\nCodigo: {l[0]}\nEmpresa (CNPJ): {l[1]}\nNome: {l[2]}\nValor: {l[3]}")
                 else:
                     print("Linha nao encontrada!")
             except Exception as erro:
@@ -63,7 +69,8 @@ def menu_linha():
                 print("Deixe vazio para manter o valor atual")
                 novo_id_empresa = input("Novo CNPJ da empresa (opcional): ") or None
                 novo_nome = input("Novo nome da linha (opcional): ") or None
-                servico_editar_linha(cod_linha, novo_id_empresa, novo_nome)
+                novo_valor = input("Novo valor da passagem (opcional): ") or None
+                servico_editar_linha(cod_linha, novo_id_empresa, novo_nome, novo_valor)
                 print("Linha atualizada!")
             except Exception as erro:
                 print(f"Erro: {erro}")
@@ -84,6 +91,21 @@ def menu_linha():
         # MENU DE HORARIOS
         elif opcao == "7":
             menuHorariosLinha()
+        
+        elif opcao == "8":  # nova opção
+            try:
+                cod_linha = input("Codigo da linha para ver historico (ou vazio para todas): ") or None
+                if cod_linha:
+                    historico = servico_listar_historico_linha(cod_linha)
+                else:
+                    historico = servico_listar_historico_linhas()
+                print("\n----- HISTORICO DE VALORES -----")
+                for h in historico:
+                    print(f"ID: {h[0]}, Linha: {h[1]}, Valor Antigo: {h[2]}, Valor Atual: {h[3]}")
+                print("--------------------------------")
+            except Exception as erro:
+                print(f"Erro: {erro}")
+
 
         # VOLTAR
         elif opcao == "0":
