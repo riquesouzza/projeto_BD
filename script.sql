@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS `cartaoTransporte`;
 DROP TABLE IF EXISTS `pontoOnibus`;
 DROP TABLE IF EXISTS `empresa`;
 DROP TABLE IF EXISTS `passageiro`;
+DROP PROCEDURE IF EXISTS `registrar_passagem`;
+DROP VIEW IF EXISTS `viagem_envolvidos`;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- Tabelas
@@ -183,4 +185,6 @@ LEFT JOIN passagem pa ON pa.idViagem = v.id
 LEFT JOIN cartaoTransporte ct ON pa.numCartao = ct.id
 LEFT JOIN passageiro pas ON ct.Usuario = pas.CPF
 
-GROUP BY  v.id, v.data, v.horaSaida, v.horaChegada, m.nome, c.nome, o.placa, l.nome;
+GROUP BY 
+    v.id, v.data, v.horaSaida, v.horaChegada,
+    m.nome, c.nome, o.placa, l.nome;
