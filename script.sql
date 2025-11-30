@@ -76,14 +76,14 @@ CREATE TABLE `horariosLinha` (
   `idLinha` integer,
   `horario` time,
   PRIMARY KEY (`idLinha`, `horario`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`)
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE
 );
 
 CREATE TABLE `linhaPontos` (
   `idLinha` integer,
   `codPonto` integer,
   PRIMARY KEY (`idLinha`, `codPonto`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`),
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE,
   FOREIGN KEY (`codPonto`) REFERENCES `pontoOnibus` (`codPonto`)
 );
 
@@ -98,7 +98,7 @@ CREATE TABLE `viagem` (
   `data` date NOT NULL,
   FOREIGN KEY (`placa`) REFERENCES `onibus` (`placa`),
   FOREIGN KEY (`motorista`) REFERENCES `motorista` (`CNH`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`),
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE,
   FOREIGN KEY (`cobrador`) REFERENCES `cobrador` (`matricula`)
 );
 
@@ -109,7 +109,7 @@ CREATE TABLE `passagem` (
   `dataHora` datetime,
   `idViagem` integer NOT NULL,
   FOREIGN KEY (`numCartao`) REFERENCES `cartaoTransporte` (`id`),
-  FOREIGN KEY (`idViagem`) REFERENCES `viagem` (`id`)
+  FOREIGN KEY (`idViagem`) REFERENCES `viagem` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE historico_linha (
@@ -117,7 +117,7 @@ CREATE TABLE historico_linha (
     codLinha INT NOT NULL,
     valor_antigo FLOAT NOT NULL,
     valor_atual FLOAT NOT NULL,
-    FOREIGN KEY (codLinha) REFERENCES linha(codLinha)
+    FOREIGN KEY (codLinha) REFERENCES linha(codLinha) ON DELETE CASCADE
 );
 
 
