@@ -1,4 +1,5 @@
 from connector import *
+import os
 
 def criarCobrador(matricula, telefone, nome, escala):
     comando = f'INSERT INTO COBRADOR (matricula, telefone, nome, escala) VALUES ("{matricula}", "{telefone}", "{nome}", "{escala}");'
@@ -26,3 +27,14 @@ def deletarCobrador(matricula):
 def lerCobradores():
     comando = 'SELECT * FROM COBRADOR;'
     return comandoLeitura(comando)
+
+def atualizarFoto(matricula, caminhoFoto):
+    if not os.path.exists(caminhoFoto):
+        raise Exception("Arquivo não encontrado")
+    
+    with open(caminhoFoto, 'rb') as file:
+        foto = file.read()
+
+    comando = f'UPDATE cobrador SET foto = %s WHERE matricula = %s;'
+    parametros = (foto, matricula)
+    comandoEscritaParametros(comando, parametros)
