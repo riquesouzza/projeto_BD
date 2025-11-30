@@ -5,7 +5,7 @@ def criarViagem(motorista, cobrador, placa, idLinha, horaChegada, horaSaida, dat
     comandoEscrita(comando)
 
 def lerViagem(idv):
-    comando = f'SELECT * FROM viagem WHERE id={idv}'
+    comando = f'SELECT * FROM viagem_envolvidos where idViagem = {idv};'
     return comandoLeitura(comando)
 
 def editarViagem(idv, motorista=None, cobrador=None, placa=None, idLinha=None, horaChegada=None, horaSaida=None, data=None):
