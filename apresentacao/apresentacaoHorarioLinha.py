@@ -1,4 +1,5 @@
 from persistencia.crudHorariosLinha import *
+from persistencia. crudLinha import ler_linha
 
 def menuHorariosLinha():
     while True:
@@ -13,6 +14,7 @@ def menuHorariosLinha():
         if opcao == "1":
             try:
                 idLinha = input("Código da linha: ")
+                temp=ler_linha(idLinha)
                 horario = input("Horário (HH:MM:SS): ")
                 criarHorarioLinha(idLinha, horario)
                 print("Horário cadastrado!")

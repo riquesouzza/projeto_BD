@@ -1,4 +1,5 @@
 from persistencia.crudLinhaPontos import *
+from persistencia.crudLinha import ler_linha
 
 def menuLinhaPontos():
     while True:
@@ -13,6 +14,7 @@ def menuLinhaPontos():
         if opcao == "1":
             try:
                 idLinha = input("Código da linha: ")
+                temp = ler_linha(idLinha)
                 codPonto = input("Código da parada: ")
                 criarLinhaPonto(idLinha, codPonto)
                 print("Relação cadastrada!")
