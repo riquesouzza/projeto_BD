@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS `cartaoTransporte`;
 DROP TABLE IF EXISTS `pontoOnibus`;
 DROP TABLE IF EXISTS `empresa`;
 DROP TABLE IF EXISTS `passageiro`;
+DROP TABLE IF EXISTS `historico_linha`;
 DROP PROCEDURE IF EXISTS `registrar_passagem`;
 DROP VIEW IF EXISTS `viagem_envolvidos`;
 SET FOREIGN_KEY_CHECKS = 1;

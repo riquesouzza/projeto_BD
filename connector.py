@@ -4,7 +4,7 @@ def conexaoBD():
     return mysql.connector.connect(
         host='localhost',
         user='root',
-        password='CIC0197UNB',
+        password='Dados!951',
         database='projetobd',
     )
 
@@ -29,6 +29,14 @@ def comandoEscrita(comando):
     finally:
         cursor.close()
         conexao.close()
+
+def comandoEscritaParametros(comando, parametros):
+    conexao = conexaoBD()
+    cursor = conexao.cursor()
+    cursor.execute(comando, parametros)
+    conexao.commit()
+    cursor.close()
+    conexao.close()
 
 def comandoLeitura(comando):
     conexao = conexaoBD()
