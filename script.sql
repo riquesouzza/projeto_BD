@@ -192,7 +192,6 @@ END $$
 
 DELIMITER ;
 
-
 CREATE VIEW viagem_envolvidos AS
 SELECT 
     v.id AS idViagem,

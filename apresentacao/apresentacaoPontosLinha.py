@@ -33,6 +33,7 @@ def menuLinhaPontos():
         elif opcao == "3":
             try:
                 idLinha = input("Código da linha: ")
+                temp = ler_linha(idLinha)
                 codPonto = input("Código atual da parada: ")
                 print("Digite o novo codigo da parada: ")
                 novoCodPonto = input("Novo código da parada: ")
@@ -43,6 +44,7 @@ def menuLinhaPontos():
         elif opcao == "4":
             try:
                 idLinha = input("Código da linha: ")
+                temp = ler_linha(idLinha)
                 codPonto = input("Código do ponto: ")
                 deletarLinhaPonto(idLinha, codPonto)
                 print("Deletado!")

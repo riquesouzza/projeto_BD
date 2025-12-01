@@ -81,8 +81,11 @@ def menuViagem():
                 print("Caso deseje manter o valor deixe o espaço em branco!")
                 motorista = input("Novo motorista: ") or None
                 cobrador = input("Novo cobrador: ") or None
+                temp = lerCobrador(cobrador)
                 placa = input("Nova placa: ") or None
+                temp = ler_onibus(placa)
                 idLinha = input("Nova linha: ") or None
+                temp = ler_linha(idLinha)
                 horaChegada = input("Nova hora de chegada: ") or None
                 horaSaida = input("Nova hora de saída: ") or None
                 data = input("Nova data: ") or None

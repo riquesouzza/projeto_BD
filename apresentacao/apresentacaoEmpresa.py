@@ -41,6 +41,7 @@ def menuEmpresa():
         elif opcao == "4":
             try:
                 cnpj = input("Digite a Cnpj da Empresa: ")
+                lerEmpresa(cnpj)
                 print("Caso deseje manter o valor deixe o espaço em branco!")
                 nome = input("Novo nome: ") or None
                 telefone = input("Novo telefone: ") or None
@@ -52,6 +53,7 @@ def menuEmpresa():
         elif opcao == "5":
             try:
                 cnpj = input("Digite o Cnpj da empresa a ser deletado: ")
+                lerEmpresa(cnpj)
                 deletarEmpresa(cnpj)
                 print("Deletado!")
             except Exception as erro:

@@ -49,6 +49,7 @@ def menuCobrador():
         elif opcao == "4":
             try:
                 matricula = input("Digite a matrícula do cobrador: ")
+                lerCobrador(matricula)
                 print("Caso deseje manter o valor deixe o espaço em branco!")
                 nome = input("Novo nome: ") or None
                 telefone = input("Novo telefone: ") or None
@@ -60,6 +61,7 @@ def menuCobrador():
         elif opcao == "5":
             try:
                 matricula = input("Digite a matrícula do funcionario a ser deletado: ")
+                lerCobrador(matricula)
                 deletarCobrador(matricula)
                 print("Deletado!")
             except Exception as erro:
@@ -68,6 +70,7 @@ def menuCobrador():
         elif opcao == "6":
             try:
                 matricula = input("Digite a matrícula do cobrador: ")
+                lerCobrador(matricula)
                 caminhoFoto = input("Digite o caminho absoluto até a foto: ")
                 atualizarFoto(matricula, caminhoFoto)
             except Exception as erro:

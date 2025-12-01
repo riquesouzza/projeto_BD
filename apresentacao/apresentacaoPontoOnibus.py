@@ -38,6 +38,7 @@ def menuPontoOnibus():
         elif opcao == "4":
             try:
                 idp = input("Código do ponto: ")
+                temp = lerPontoOnibus(idp)
                 print("Caso deseje manter o valor deixe o espaço em branco!")
                 endereco = input("Novo endereço: ") or None
                 if endereco is not None:
