@@ -68,23 +68,25 @@ CREATE TABLE `onibus` (
 
 CREATE TABLE `linha` (
   `codLinha` integer PRIMARY KEY,
-  `idEmpresa` varchar(255),
+  `idEmpresa` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
+  `valor` float NOT NULL,
   FOREIGN KEY (`idEmpresa`) REFERENCES `empresa` (`CNPJ`)
 );
+
 
 CREATE TABLE `horariosLinha` (
   `idLinha` integer,
   `horario` time,
   PRIMARY KEY (`idLinha`, `horario`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`)
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE
 );
 
 CREATE TABLE `linhaPontos` (
   `idLinha` integer,
   `codPonto` integer,
   PRIMARY KEY (`idLinha`, `codPonto`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`),
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE,
   FOREIGN KEY (`codPonto`) REFERENCES `pontoOnibus` (`codPonto`)
 );
 
@@ -99,7 +101,7 @@ CREATE TABLE `viagem` (
   `data` date NOT NULL,
   FOREIGN KEY (`placa`) REFERENCES `onibus` (`placa`),
   FOREIGN KEY (`motorista`) REFERENCES `motorista` (`CNH`),
-  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`),
+  FOREIGN KEY (`idLinha`) REFERENCES `linha` (`codLinha`) ON DELETE CASCADE,
   FOREIGN KEY (`cobrador`) REFERENCES `cobrador` (`matricula`)
 );
 
@@ -110,19 +112,42 @@ CREATE TABLE `passagem` (
   `dataHora` datetime,
   `idViagem` integer NOT NULL,
   FOREIGN KEY (`numCartao`) REFERENCES `cartaoTransporte` (`id`),
-  FOREIGN KEY (`idViagem`) REFERENCES `viagem` (`id`)
+  FOREIGN KEY (`idViagem`) REFERENCES `viagem` (`id`) ON DELETE CASCADE
 );
+
+CREATE TABLE historico_linha (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codLinha INT NOT NULL,
+    valor_antigo FLOAT NOT NULL,
+    valor_atual FLOAT NOT NULL,
+    FOREIGN KEY (codLinha) REFERENCES linha(codLinha) ON DELETE CASCADE
+);
+
+
+-- Trigger para atualizar histórico
+DELIMITER $$
+CREATE TRIGGER trg_linha_valor_update
+BEFORE UPDATE ON linha
+FOR EACH ROW
+BEGIN
+    IF OLD.valor <> NEW.valor THEN
+        INSERT INTO historico_linha (codLinha, valor_antigo, valor_atual)
+        VALUES (OLD.codLinha, OLD.valor, NEW.valor);
+    END IF;
+END $$
+DELIMITER ;
 
 DELIMITER $$
 
 CREATE PROCEDURE registrar_passagem(
     IN p_id INT,
     IN p_numCartao INT,
-    IN p_valor FLOAT,
-    IN p_idViagem INT
+    IN p_idViagem INT,
+    IN p_dataHora DATETIME
 )
 BEGIN
     DECLARE v_saldo FLOAT;
+    DECLARE v_valorLinha FLOAT;
 
     -- Busca o saldo atual do cartão
     SELECT saldo INTO v_saldo
@@ -135,30 +160,37 @@ BEGIN
             SET MESSAGE_TEXT = 'Cartão inexistente.';
     END IF;
 
-    -- Verifica saldo suficiente
-    IF v_saldo < p_valor THEN
+    -- Busca o valor da linha da viagem
+    SELECT l.valor INTO v_valorLinha
+    FROM viagem v
+    JOIN linha l ON v.idLinha = l.codLinha
+    WHERE v.id = p_idViagem;
+
+    -- Verifica se tem saldo suficiente
+    IF v_saldo < v_valorLinha THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Saldo insuficiente para realizar a passagem.';
     END IF;
 
-    -- Insere usando o ID fornecido pelo usuário
+    -- Insere a passagem usando o ID e a data fornecidos pelo usuário
     INSERT INTO passagem (id, numCartao, valor, dataHora, idViagem)
     VALUES (
         p_id,
         p_numCartao,
-        p_valor,
-        NOW(),
+        v_valorLinha,
+        p_dataHora,
         p_idViagem
     );
 
-    -- Atualiza saldo
+    -- Atualiza o saldo do cartão
     UPDATE cartaoTransporte
-    SET saldo = saldo - p_valor
+    SET saldo = saldo - v_valorLinha
     WHERE id = p_numCartao;
 
 END $$
 
 DELIMITER ;
+
 
 CREATE VIEW viagem_envolvidos AS
 SELECT 

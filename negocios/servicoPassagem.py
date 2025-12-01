@@ -8,8 +8,8 @@ from persistencia.crudPassagem import (
 
 # SERVICOS PASSAGEM
 
-def servico_cadastrar_passagem(id_passagem, num_cartao, valor, data_hora, id_viagem):
-    cadastrar_passagem(id_passagem, num_cartao, valor, data_hora, id_viagem)
+def servico_cadastrar_passagem(id_passagem, num_cartao, id_viagem, data_hora):
+    cadastrar_passagem(id_passagem, num_cartao,  id_viagem, data_hora)
 
 
 def servico_listar_passagens():
@@ -20,8 +20,8 @@ def servico_ler_passagem(id_passagem):
     return ler_passagem(id_passagem)
 
 
-def servico_editar_passagem(id_passagem, num_cartao=None, valor=None, data_hora=None, id_viagem=None):
-    editar_passagem(id_passagem, num_cartao, valor, data_hora, id_viagem)
+def servico_editar_passagem(id_passagem, num_cartao=None, id_viagem=None, data_hora=None):
+    editar_passagem(id_passagem, num_cartao, id_viagem, data_hora)
 
 
 def servico_deletar_passagem(id_passagem):

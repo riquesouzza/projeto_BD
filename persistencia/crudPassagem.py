@@ -6,11 +6,8 @@ def listar_passagens():
     return comandoLeitura(comando)
 
 # CADASTRAR PASSAGEM
-def cadastrar_passagem(id_passagem, num_cartao, valor, data_hora, id_viagem):
-    comando = (
-        f'INSERT INTO passagem (id, numCartao, valor, dataHora, idViagem) '
-        f'VALUES ({id_passagem}, {num_cartao}, {valor}, "{data_hora}", {id_viagem})'
-    )
+def cadastrar_passagem(id_passagem, num_cartao,id_viagem, data_hora):
+    comando = f'CALL registrar_passagem({id_passagem}, {num_cartao}, {id_viagem}, "{data_hora}")'
     comandoEscrita(comando)
 
 # LER UMA PASSAGEM PELO ID
@@ -19,12 +16,9 @@ def ler_passagem(id_passagem):
     return comandoLeitura(comando)
 
 # EDITAR PASSAGEM
-def editar_passagem(id_passagem, num_cartao=None, valor=None, data_hora=None, id_viagem=None):
+def editar_passagem(id_passagem, num_cartao=None, id_viagem=None,  data_hora=None):
     if num_cartao is not None:
         comando = f'UPDATE passagem SET numCartao = {num_cartao} WHERE id = {id_passagem}'
-        comandoEscrita(comando)
-    if valor is not None:
-        comando = f'UPDATE passagem SET valor = {valor} WHERE id = {id_passagem}'
         comandoEscrita(comando)
     if data_hora is not None:
         comando = f'UPDATE passagem SET dataHora = "{data_hora}" WHERE id = {id_passagem}'

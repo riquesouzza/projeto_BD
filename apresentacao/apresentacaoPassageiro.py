@@ -2,7 +2,8 @@ from negocios.servicoPassageiro import (
     servico_cadastrar_passageiro,
     servico_listar_passageiros,
     servico_editar_passageiro,
-    servico_deletar_passageiro
+    servico_deletar_passageiro,
+    servico_buscar_passageiro,
 )
 
 
@@ -21,6 +22,7 @@ def menu_passageiro():
         print("2 - Listar passageiros")
         print("3 - Editar passageiro")
         print("4 - Remover passageiro")
+        print("5 - Buscar passageiro")
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
@@ -60,9 +62,20 @@ def menu_passageiro():
                 print("Passageiro removido com sucesso!")
             except Exception as e:
                 print(f"Erro: {e}")
+        elif opcao == "5":
+            try:
+                cpf = input("CPF do passageiro a ser buscado: ")
+                passageiro = servico_buscar_passageiro(cpf)
+                if passageiro:
+                    p = passageiro[0]  # pegar a primeira tupla
+                    print(f"CPF: {p[0]}, Nome: {p[1]}, Telefone: {p[2]}, Email: {p[3]}, Nascimento: {p[4]}")
+                else:
+                    print("Passageiro nao encontrado.")
+            except Exception as e:
+                print(f"Erro: {e}")
 
         elif opcao == "0":
             break
 
         else:
-            print("Opção invalida!")
+            print("Opcao invalida!")
