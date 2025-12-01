@@ -18,12 +18,12 @@ def comandoEscrita(comando):
     except Exception as e:
         if e.errno == 1451 or e.errno == 1217:
             raise Exception(
-                "Não é possível excluir/alterar porque existem registros dependentes."
+                "Não é possível excluir/alterar porque existem dados associados a essa informação, apague-os primeiro."
             ) from e
 
         if e.errno == 1452 or e.errno == 1216:
             raise Exception(
-                "Você tentou inserir/alterar um valor que não existe na tabela relacionada."
+                "Você tentou inserir/alterar um valor que não existe."
             ) from e
     
     finally:
@@ -45,4 +45,6 @@ def comandoLeitura(comando):
     resultado = cursor.fetchall()
     cursor.close()
     conexao.close()
-    return resultado
+    if resultado:
+        return resultado
+    raise Exception("Não foi possivel encontrar dado!")

@@ -1,4 +1,5 @@
 from persistencia.crudViagem import *
+from persistencia import *
 
 def menuViagem():
     while True:
@@ -15,8 +16,11 @@ def menuViagem():
             try:
                 motorista = input("Motorista (CNH): ")
                 cobrador = input("Cobrador (Matricula): ")
+                temp = lerCobrador(cobrador)
                 placa = input("Placa do ônibus: ")
+                temp = ler_onibus(placa)
                 idLinha = input("Código da linha: ")
+                temp = ler_linha(idLinha)
                 horaChegada = input("Hora de chegada (HH:MM:SS): ")
                 horaSaida = input("Hora de saída (HH:MM:SS): ")
                 data = input("Data (AAAA-MM-DD): ")
@@ -89,6 +93,7 @@ def menuViagem():
         elif opcao == "5":
             try:
                 idv = input("ID da viagem: ")
+                lerViagem(idv)
                 deletarViagem(idv)
                 print("Deletado!")
             except Exception as erro:

@@ -1,4 +1,5 @@
 from connector import *
+from persistencia import *
 
 def criarViagem(motorista, cobrador, placa, idLinha, horaChegada, horaSaida, data):
     comando = f'INSERT INTO viagem (motorista, cobrador, placa, idLinha, horaChegada, horaSaida, data) VALUES ("{motorista}", "{cobrador}", "{placa}", "{idLinha}", "{horaChegada}", "{horaSaida}", "{data}")'

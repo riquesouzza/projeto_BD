@@ -80,7 +80,7 @@ def menu_linha():
             try:
                 cod_linha = input("Codigo da linha para remover: ")
                 servico_deletar_linha(cod_linha)
-                print("Linha removida!")
+                print("Linha removida e todos os dados correlatos!")
             except Exception as erro:
                 print(f"Erro: {erro}")
 
@@ -105,7 +105,6 @@ def menu_linha():
                 print("--------------------------------")
             except Exception as erro:
                 print(f"Erro: {erro}")
-
 
         # VOLTAR
         elif opcao == "0":
