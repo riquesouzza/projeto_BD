@@ -25,18 +25,10 @@ def comandoEscrita(comando):
             raise Exception(
                 "Você tentou inserir/alterar um valor que não existe na tabela relacionada."
             ) from e
-
+    
     finally:
         cursor.close()
         conexao.close()
-
-def comandoEscritaParametros(comando, parametros):
-    conexao = conexaoBD()
-    cursor = conexao.cursor()
-    cursor.execute(comando, parametros)
-    conexao.commit()
-    cursor.close()
-    conexao.close()
 
 def comandoLeitura(comando):
     conexao = conexaoBD()
