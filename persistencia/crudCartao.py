@@ -1,5 +1,5 @@
 from connector import *
-from .crudPassageiro import ler_passageiro 
+from .crudPassageiro import buscar_passageiro
 
 # LISTAR CARTOES
 def listar_cartoes():
@@ -9,7 +9,7 @@ def listar_cartoes():
 # CADASTRA CARTAO
 def cadastrar_cartao(id, usuario, saldo):
   
-    if not ler_passageiro(usuario):
+    if not buscar_passageiro(usuario):
         print(f"Erro: Passageiro com CPF {usuario} nao existe.")
         return
 
@@ -32,7 +32,7 @@ def deletar_cartao(id):
 # UPDATES CARTAO
 def editar_cartao(id, usuario=None, saldo=None):
     # Se alterar usuario, valida se passageiro existe
-    if usuario is not None and not ler_passageiro(usuario):
+    if usuario is not None and not buscar_passageiro(usuario):
         print(f"Erro: Passageiro com CPF {usuario} nao existe.")
         return
 

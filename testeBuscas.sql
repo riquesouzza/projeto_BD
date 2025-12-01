@@ -17,12 +17,13 @@ INSERT INTO pontoOnibus (codPonto, endereco) VALUES
 
 
 -- ==== LINHA ====
-INSERT INTO linha (codLinha, idEmpresa, nome) VALUES
-(101, '11111111000101', 'Linha Sul'),
-(102, '11111111000101', 'Linha Leste'),
-(201, '22222222000102', 'Linha Centro'),
-(301, '33333333000103', 'Linha Norte'),
-(401, '44444444000104', 'Linha Oeste');
+INSERT INTO linha (codLinha, idEmpresa, nome, valor) VALUES
+(101, '11111111000101', 'Linha Sul', 4.50),
+(102, '11111111000101', 'Linha Leste', 5.50),
+(201, '22222222000102', 'Linha Centro', 6.50),
+(301, '33333333000103', 'Linha Norte', 7.50),
+(401, '44444444000104', 'Linha Oeste', 8.50);
+
 
 
 -- ==== HORÁRIOS DAS LINHAS ====
@@ -93,7 +94,7 @@ INSERT INTO viagem (id, motorista, cobrador, placa, idLinha, horaChegada, horaSa
 (1, 'M1111', 'C111', 'AAA1A11', 101, '07:30:00', '06:00:00', '2025-10-19'),
 (2, 'M2222', 'C222', 'BBB2B22', 102, '09:00:00', '08:30:00', '2025-10-19'),
 (3, 'M3333', 'C333', 'CCC3C33', 201, '08:00:00', '07:00:00', '2025-10-19'),
-(4, 'M4444', NULL,     'DDD4D44', 301, '10:00:00', '09:00:00', '2025-10-19'), -- 🔸 CARDINALIDADE 0 (sem cobrador)
+(4, 'M4444', 'C444',    'DDD4D44', 301, '10:00:00', '09:00:00', '2025-10-19'), -- 🔸 CARDINALIDADE 0 (sem cobrador)
 (5, 'M5555', 'C555', 'EEE5E55', 401, '12:00:00', '11:00:00', '2025-10-19');
 
 

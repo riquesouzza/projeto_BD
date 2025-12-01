@@ -31,10 +31,9 @@ def menu_passagem():
             try:
                 idp = input("ID da passagem: ")
                 num_cartao = input("ID do cartao: ")
-                valor = input("Valor da passagem: ")
                 data_hora = input("Data e hora (AAAA-MM-DD HH:MM:SS): ")
                 id_viagem = input("ID da viagem: ")
-                servico_cadastrar_passagem(idp, num_cartao, valor, data_hora, id_viagem)
+                servico_cadastrar_passagem(idp, num_cartao, id_viagem, data_hora)
                 print("Passagem cadastrada com sucesso!")
             except Exception as erro:
                 print(f"Erro: {erro}")
@@ -63,11 +62,10 @@ def menu_passagem():
                 print("Deixe vazio para manter o valor atual")
 
                 num_cartao = input("Novo ID do cartao (opcional): ") or None
-                valor = input("Novo valor (opcional): ") or None
                 data_hora = input("Nova data/hora (opcional): ") or None
                 id_viagem = input("Novo ID da viagem (opcional): ") or None
 
-                servico_editar_passagem(idp, num_cartao, valor, data_hora, id_viagem)
+                servico_editar_passagem(idp, num_cartao, id_viagem, data_hora)
                 print("Passagem atualizada!")
             except Exception as erro:
                 print(f"Erro: {erro}")
