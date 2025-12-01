@@ -1,3 +1,4 @@
+from persistencia. crudEmpresa import lerEmpresa
 from negocios.servicoLinha import (
     servico_cadastrar_linha,
     servico_listar_linhas,
@@ -38,6 +39,7 @@ def menu_linha():
             try:
                 cod_linha = input("Codigo da linha: ")
                 id_empresa = input("CNPJ da empresa responsavel: ")
+                temp = lerEmpresa(id_empresa)
                 nome = input("Nome da linha: ")
                 valor_linha = input("Valor da passagem da linha: ")
                 servico_cadastrar_linha(cod_linha, id_empresa, nome, valor_linha)

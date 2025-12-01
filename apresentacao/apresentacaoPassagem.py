@@ -1,3 +1,5 @@
+from persistencia. crudViagem import lerViagem
+from persistencia. crudCartao import ler_cartao
 from negocios.servicoPassagem import (
     servico_cadastrar_passagem,
     servico_listar_passagens,
@@ -31,8 +33,10 @@ def menu_passagem():
             try:
                 idp = input("ID da passagem: ")
                 num_cartao = input("ID do cartao: ")
+                temp = ler_cartao(num_cartao)
                 data_hora = input("Data e hora (AAAA-MM-DD HH:MM:SS): ")
                 id_viagem = input("ID da viagem: ")
+                temp = lerViagem(id_viagem)
                 servico_cadastrar_passagem(idp, num_cartao, id_viagem, data_hora)
                 print("Passagem cadastrada com sucesso!")
             except Exception as erro:

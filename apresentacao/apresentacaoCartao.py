@@ -1,3 +1,4 @@
+from persistencia. crudPassageiro import buscar_passageiro
 from negocios.servicoCartao import (
     servico_cadastrar_cartao,
     servico_listar_cartoes,
@@ -31,6 +32,7 @@ def menu_cartao():
             try:
                 idc = input("ID do cartao: ")
                 usuario = input("CPF do passageiro dono do cartao: ")
+                temp= buscar_passageiro(usuario)
                 saldo = input("Saldo inicial: ")
                 servico_cadastrar_cartao(idc, usuario, saldo)
                 print("Cartao cadastrado com sucesso!")

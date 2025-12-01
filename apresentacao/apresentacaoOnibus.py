@@ -1,3 +1,4 @@
+from persistencia. crudEmpresa import lerEmpresa
 from negocios.servicoOnibus import (
     servico_cadastrar_onibus,
     servico_listar_onibus,
@@ -32,6 +33,7 @@ def menu_onibus():
                 placa = input("Placa do onibus: ")
                 capacidade = input("Capacidade: ")
                 id_empresa = input("CNPJ da empresa responsavel: ")
+                temp = lerEmpresa(id_empresa)
                 servico_cadastrar_onibus(placa, capacidade, id_empresa)
                 print("Onibus cadastrado com sucesso!")
             except Exception as erro:
