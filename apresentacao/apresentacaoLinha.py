@@ -1,3 +1,4 @@
+from persistencia. crudEmpresa import lerEmpresa
 from negocios.servicoLinha import (
     servico_cadastrar_linha,
     servico_listar_linhas,
@@ -33,11 +34,12 @@ def menu_linha():
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
-        # CREATE
+      
         if opcao == "1":
             try:
                 cod_linha = input("Codigo da linha: ")
                 id_empresa = input("CNPJ da empresa responsavel: ")
+                temp = lerEmpresa(id_empresa)
                 nome = input("Nome da linha: ")
                 valor_linha = input("Valor da passagem da linha: ")
                 servico_cadastrar_linha(cod_linha, id_empresa, nome, valor_linha)
@@ -45,11 +47,11 @@ def menu_linha():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # READ – LISTAR
+        
         elif opcao == "2":
             exibir_linhas()
 
-        # READ – BUSCAR
+      
         elif opcao == "3":
             try:
                 cod_linha = input("Digite o codigo da linha: ")
@@ -62,7 +64,7 @@ def menu_linha():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # UPDATE
+       
         elif opcao == "4":
             try:
                 cod_linha = input("Codigo da linha para editar: ")
@@ -75,7 +77,7 @@ def menu_linha():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # DELETE
+        
         elif opcao == "5":
             try:
                 cod_linha = input("Codigo da linha para remover: ")
@@ -84,15 +86,15 @@ def menu_linha():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # MENU DE PONTOS
+       
         elif opcao == "6":
             menuLinhaPontos()
 
-        # MENU DE HORARIOS
+       
         elif opcao == "7":
             menuHorariosLinha()
         
-        elif opcao == "8":  # nova opção
+        elif opcao == "8":  
             try:
                 cod_linha = input("Codigo da linha para ver historico (ou vazio para todas): ") or None
                 if cod_linha:
@@ -106,7 +108,7 @@ def menu_linha():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # VOLTAR
+       
         elif opcao == "0":
             break
 

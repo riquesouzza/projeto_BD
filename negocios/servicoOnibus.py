@@ -6,8 +6,6 @@ from persistencia.crudOnibus import (
     deletar_onibus
 )
 
-# SERVICOS ONIBUS
-
 def servico_cadastrar_onibus(placa, capacidade, id_empresa):
     cadastrar_onibus(placa, capacidade, id_empresa)
 

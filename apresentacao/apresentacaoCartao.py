@@ -1,3 +1,4 @@
+from persistencia. crudPassageiro import buscar_passageiro
 from negocios.servicoCartao import (
     servico_cadastrar_cartao,
     servico_listar_cartoes,
@@ -26,22 +27,23 @@ def menu_cartao():
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
-        # CREATE
+       
         if opcao == "1":
             try:
                 idc = input("ID do cartao: ")
                 usuario = input("CPF do passageiro dono do cartao: ")
+                temp= buscar_passageiro(usuario)
                 saldo = input("Saldo inicial: ")
                 servico_cadastrar_cartao(idc, usuario, saldo)
                 print("Cartao cadastrado com sucesso!")
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # READ – LISTAR
+        
         elif opcao == "2":
             exibir_cartoes()
 
-        # READ – BUSCAR
+       
         elif opcao == "3":
             try:
                 idc = input("Digite o ID do cartao: ")
@@ -54,7 +56,6 @@ def menu_cartao():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # UPDATE
         elif opcao == "4":
             try:
                 idc = input("ID do cartao que deseja editar: ")
@@ -68,7 +69,7 @@ def menu_cartao():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # DELETE
+       
         elif opcao == "5":
             try:
                 idc = input("ID do cartao que deseja remover: ")
@@ -77,7 +78,7 @@ def menu_cartao():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # SAIR
+      
         elif opcao == "0":
             break
 

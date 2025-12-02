@@ -6,7 +6,6 @@ from persistencia.crudPassagem import (
     deletar_passagem
 )
 
-# SERVICOS PASSAGEM
 
 def servico_cadastrar_passagem(id_passagem, num_cartao, id_viagem, data_hora):
     cadastrar_passagem(id_passagem, num_cartao,  id_viagem, data_hora)

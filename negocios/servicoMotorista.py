@@ -7,9 +7,6 @@ from persistencia.crudMotorista import (
 
 
 
-
-# SERVICOS
-
 def servico_cadastrar_motorista(cnh, nome, telefone,jornada):
   
     cadastrar_motorista(cnh, nome, telefone,jornada)

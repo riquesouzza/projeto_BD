@@ -6,7 +6,7 @@ def listarPassageiros():
     return comandoLeitura(comando)
 
 
-# CADASTRA PASSAGEIROS
+
 def cadastrar_passageiro(cpf, nome, telefone, email, data_nascimento):
     comando = (
         f'INSERT INTO passageiro (CPF, nome, telefone, email, dataNascimento) '
@@ -15,19 +15,19 @@ def cadastrar_passageiro(cpf, nome, telefone, email, data_nascimento):
     comandoEscrita(comando)
 
 
-# LE PASSAGEIROS
+
 
 def buscar_passageiro(cpf):
     comando = f'SELECT * FROM passageiro WHERE CPF="{cpf}"'
     return comandoLeitura(comando)
 
-# DELETA PASSGAEIRO
+
 def deletar_passageiro(cpf):
     comando = f'DELETE FROM passageiro WHERE CPF="{cpf}"'
     comandoEscrita(comando)
 
 
-# UPDATES PASSAGEIROS
+
 def editar_passageiro(cpf, nome=None, telefone=None, email=None, data_nascimento=None):
     if nome is not None:
         comando = f'UPDATE passageiro SET nome = "{nome}" WHERE CPF = "{cpf}"'

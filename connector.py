@@ -4,7 +4,7 @@ def conexaoBD():
     return mysql.connector.connect(
         host='localhost',
         user='root',
-        password='Dados!951',
+        password='CIC0197UNB',
         database='projetobd',
     )
 
@@ -25,6 +25,9 @@ def comandoEscrita(comando):
             raise Exception(
                 "Você tentou inserir/alterar um valor que não existe."
             ) from e
+        else: 
+            raise e
+        
     
     finally:
         cursor.close()
