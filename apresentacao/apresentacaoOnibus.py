@@ -27,7 +27,7 @@ def menu_onibus():
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
-        # CREATE
+        
         if opcao == "1":
             try:
                 placa = input("Placa do onibus: ")
@@ -39,11 +39,11 @@ def menu_onibus():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # READ – LISTAR
+      
         elif opcao == "2":
             exibir_onibus()
 
-        # READ – BUSCAR
+      
         elif opcao == "3":
             try:
                 placa = input("Digite a placa do onibus: ")
@@ -56,7 +56,7 @@ def menu_onibus():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # UPDATE
+       
         elif opcao == "4":
             try:
                 placa = input("Placa do onibus para editar: ")
@@ -70,7 +70,7 @@ def menu_onibus():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # DELETE
+       
         elif opcao == "5":
             try:
                 placa = input("Placa do onibus para remover: ")
@@ -79,7 +79,7 @@ def menu_onibus():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # VOLTAR
+        
         elif opcao == "0":
             break
 

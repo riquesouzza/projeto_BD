@@ -6,7 +6,6 @@ from persistencia.crudCartao import (
     listar_cartoes
 )
 
-# SERVIÇOS CARTAO
 
 def servico_cadastrar_cartao(id, usuario, saldo):
     cadastrar_cartao(id, usuario, saldo)

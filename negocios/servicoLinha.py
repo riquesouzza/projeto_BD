@@ -8,8 +8,6 @@ from persistencia.crudLinha import (
     listar_historico_linha
 )
 
-# SERVICOS LINHA
-
 def servico_cadastrar_linha(cod_linha, id_empresa, nome, valor):
     cadastrar_linha(cod_linha, id_empresa, nome, valor)
 

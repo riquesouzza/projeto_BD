@@ -6,8 +6,6 @@ from persistencia.crudPassageiro import (
     deletar_passageiro
 )
 
-# SERVICOS 
-
 def servico_cadastrar_passageiro(cpf, nome, telefone, email, nascimento):
    
     cadastrar_passageiro(cpf, nome, telefone, email, nascimento)

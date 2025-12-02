@@ -25,6 +25,9 @@ def comandoEscrita(comando):
             raise Exception(
                 "Você tentou inserir/alterar um valor que não existe."
             ) from e
+        else: 
+            raise e
+        
     
     finally:
         cursor.close()

@@ -16,7 +16,6 @@ DROP PROCEDURE IF EXISTS `registrar_passagem`;
 DROP VIEW IF EXISTS `viagem_envolvidos`;
 SET FOREIGN_KEY_CHECKS = 1;
 
--- Tabelas
 
 CREATE TABLE `passageiro` (
   `CPF` varchar(255) PRIMARY KEY,
@@ -125,7 +124,6 @@ CREATE TABLE historico_linha (
 );
 
 
--- Trigger para atualizar histórico
 DELIMITER $$
 CREATE TRIGGER trg_linha_valor_update
 BEFORE UPDATE ON linha
@@ -150,30 +148,29 @@ BEGIN
     DECLARE v_saldo FLOAT;
     DECLARE v_valorLinha FLOAT;
 
-    -- Busca o saldo atual do cartão
+    
     SELECT saldo INTO v_saldo
     FROM cartaoTransporte
     WHERE id = p_numCartao;
 
-    -- Verifica se o cartão existe
+    
     IF v_saldo IS NULL THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Cartão inexistente.';
     END IF;
 
-    -- Busca o valor da linha da viagem
+
     SELECT l.valor INTO v_valorLinha
     FROM viagem v
     JOIN linha l ON v.idLinha = l.codLinha
     WHERE v.id = p_idViagem;
 
-    -- Verifica se tem saldo suficiente
+   
     IF v_saldo < v_valorLinha THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Saldo insuficiente para realizar a passagem.';
     END IF;
 
-    -- Insere a passagem usando o ID e a data fornecidos pelo usuário
     INSERT INTO passagem (id, numCartao, valor, dataHora, idViagem)
     VALUES (
         p_id,
@@ -183,7 +180,7 @@ BEGIN
         p_idViagem
     );
 
-    -- Atualiza o saldo do cartão
+  
     UPDATE cartaoTransporte
     SET saldo = saldo - v_valorLinha
     WHERE id = p_numCartao;

@@ -28,7 +28,6 @@ def menu_passagem():
         print("0 - Voltar")
         opcao = input("Escolha: ")
 
-        # CREATE
         if opcao == "1":
             try:
                 idp = input("ID da passagem: ")
@@ -42,11 +41,11 @@ def menu_passagem():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # READ – LISTAR
+       
         elif opcao == "2":
             exibir_passagens()
 
-        # READ – BUSCAR
+       
         elif opcao == "3":
             try:
                 idp = input("Digite o ID da passagem: ")
@@ -59,7 +58,7 @@ def menu_passagem():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # UPDATE
+       
         elif opcao == "4":
             try:
                 idp = input("ID da passagem que deseja editar: ")
@@ -74,7 +73,7 @@ def menu_passagem():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # DELETE
+       
         elif opcao == "5":
             try:
                 idp = input("ID da passagem que deseja remover: ")
@@ -83,7 +82,7 @@ def menu_passagem():
             except Exception as erro:
                 print(f"Erro: {erro}")
 
-        # SAIR
+      
         elif opcao == "0":
             break
 
